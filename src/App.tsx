@@ -15,12 +15,22 @@ import CalendarPage from "./components/dashboard/CalendarPage";
 import DocumentsPage from "./components/dashboard/DocumentsPage";
 import PaymentsPage from "./components/dashboard/PaymentsPage";
 import UserSettingsPage from "./components/dashboard/UserSettingsPage";
+import { Toaster } from "./components/ui/toaster";
 import routes from "tempo-routes";
 
 function App() {
   return (
     <AuthProvider>
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center min-h-screen">
+            Loading...
+          </div>
+        }
+      >
+        {/* Tempo routes must be rendered before other routes */}
+        {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginForm />} />
@@ -46,11 +56,16 @@ function App() {
             <Route path="settings" element={<UserSettingsPage />} />
           </Route>
 
+          {/* Tempo routes */}
+          {import.meta.env.VITE_TEMPO === "true" && (
+            <Route path="/tempobook/*" />
+          )}
+
           {/* Catch-all route */}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-        {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
       </Suspense>
+      <Toaster />
     </AuthProvider>
   );
 }
