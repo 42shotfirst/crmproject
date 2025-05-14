@@ -261,7 +261,7 @@ export default function CalendarView({
                       <div
                         key={event.id}
                         onClick={() => onEventClick(event)}
-                        className={`px-1 py-0.5 text-xs rounded truncate cursor-pointer bg-${event.color || "blue"}-100 border-l-2 border-${event.color || "blue"}-500`}
+                        className={`px-1 py-0.5 text-xs rounded truncate cursor-pointer ${event.color === "blue" ? "bg-blue-100 border-l-2 border-blue-500" : event.color === "green" ? "bg-green-100 border-l-2 border-green-500" : event.color === "red" ? "bg-red-100 border-l-2 border-red-500" : event.color === "yellow" ? "bg-yellow-100 border-l-2 border-yellow-500" : event.color === "purple" ? "bg-purple-100 border-l-2 border-purple-500" : "bg-blue-100 border-l-2 border-blue-500"}`}
                       >
                         {event.allDay
                           ? "All day"

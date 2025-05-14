@@ -168,7 +168,7 @@ export default function CalendarPage() {
                   .map((event) => (
                     <div
                       key={event.id}
-                      className={`p-3 rounded-md cursor-pointer bg-${event.color || "blue"}-50 border-l-4 border-${event.color || "blue"}-500`}
+                      className={`p-3 rounded-md cursor-pointer ${event.color === "blue" ? "bg-blue-50 border-l-4 border-blue-500" : event.color === "green" ? "bg-green-50 border-l-4 border-green-500" : event.color === "red" ? "bg-red-50 border-l-4 border-red-500" : event.color === "yellow" ? "bg-yellow-50 border-l-4 border-yellow-500" : event.color === "purple" ? "bg-purple-50 border-l-4 border-purple-500" : "bg-blue-50 border-l-4 border-blue-500"}`}
                       onClick={() => handleEditEvent(event)}
                     >
                       <div className="font-medium">{event.title}</div>

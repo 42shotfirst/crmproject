@@ -11,6 +11,7 @@ import {
   ChevronRight,
   LogOut,
   Menu,
+  FileText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -40,6 +41,7 @@ const Sidebar = ({ className, collapsed = false, onToggle }: SidebarProps) => {
     { icon: <LayoutDashboard size={20} />, label: "Dashboard", path: "/" },
     { icon: <Users size={20} />, label: "Contacts", path: "/contacts" },
     { icon: <Calendar size={20} />, label: "Activities", path: "/activities" },
+    { icon: <FileText size={20} />, label: "Documents", path: "/documents" },
     { icon: <CreditCard size={20} />, label: "Payments", path: "/payments" },
     { icon: <Settings size={20} />, label: "Settings", path: "/settings" },
     { icon: <HelpCircle size={20} />, label: "Help", path: "/help" },
