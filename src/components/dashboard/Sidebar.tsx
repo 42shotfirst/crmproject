@@ -43,6 +43,7 @@ const Sidebar = ({ className, collapsed = false, onToggle }: SidebarProps) => {
     { icon: <Calendar size={20} />, label: "Activities", path: "/activities" },
     { icon: <FileText size={20} />, label: "Documents", path: "/documents" },
     { icon: <CreditCard size={20} />, label: "Payments", path: "/payments" },
+    { icon: <FileText size={20} />, label: "Reports", path: "/reports" },
     { icon: <Settings size={20} />, label: "Settings", path: "/settings" },
     { icon: <HelpCircle size={20} />, label: "Help", path: "/help" },
   ];

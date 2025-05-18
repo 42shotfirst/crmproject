@@ -15,6 +15,7 @@ import CalendarPage from "./components/dashboard/CalendarPage";
 import DocumentsPage from "./components/dashboard/DocumentsPage";
 import PaymentsPage from "./components/dashboard/PaymentsPage";
 import UserSettingsPage from "./components/dashboard/UserSettingsPage";
+import ReportsPage from "./components/reports/ReportsPage";
 import { Toaster } from "./components/ui/toaster";
 import routes from "tempo-routes";
 
@@ -53,6 +54,7 @@ function App() {
             <Route path="calendar" element={<CalendarPage />} />
             <Route path="documents" element={<DocumentsPage />} />
             <Route path="payments" element={<PaymentsPage />} />
+            <Route path="reports" element={<ReportsPage />} />
             <Route path="settings" element={<UserSettingsPage />} />
           </Route>
 
