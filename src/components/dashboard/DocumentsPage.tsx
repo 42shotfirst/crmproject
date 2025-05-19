@@ -281,6 +281,12 @@ export default function DocumentsPage() {
             onChange={handleUpload}
           />
           <Button
+            variant="outline"
+            onClick={() => (window.location.href = "/documents/import-export")}
+          >
+            <Download className="mr-2 h-4 w-4" /> Import/Export
+          </Button>
+          <Button
             onClick={() => fileInputRef.current?.click()}
             disabled={isUploading}
           >

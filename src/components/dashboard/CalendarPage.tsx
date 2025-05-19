@@ -97,6 +97,12 @@ export default function CalendarPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold tracking-tight">Calendar</h1>
+        <Button
+          variant="outline"
+          onClick={() => (window.location.href = "/calendar/import-export")}
+        >
+          <Download className="mr-2 h-4 w-4" /> Import/Export
+        </Button>
       </div>
 
       <Tabs

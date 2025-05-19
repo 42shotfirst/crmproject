@@ -16,6 +16,8 @@ import DocumentsPage from "./components/dashboard/DocumentsPage";
 import PaymentsPage from "./components/dashboard/PaymentsPage";
 import UserSettingsPage from "./components/dashboard/UserSettingsPage";
 import ReportsPage from "./components/reports/ReportsPage";
+import DocumentImportExport from "./components/documents/DocumentImportExport";
+import EventImportExport from "./components/calendar/EventImportExport";
 import { Toaster } from "./components/ui/toaster";
 import routes from "tempo-routes";
 

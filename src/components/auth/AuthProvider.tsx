@@ -21,6 +21,7 @@ type AuthContextType = {
     data: Session | null;
   }>;
   signOut: () => Promise<void>;
+  signInWithOAuth: (provider: "github" | "google") => Promise<void>;
   resetPassword: (email: string) => Promise<{
     error: Error | null;
     data: any;
@@ -127,6 +128,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     await supabase.auth.signOut();
   };
 
+  const signInWithOAuth = async (provider: "github" | "google") => {
+    await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+  };
+
   const resetPassword = async (email: string) => {
     return await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/reset-password`,
@@ -152,6 +162,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         user,
         loading,
         signIn,
+        signInWithOAuth,
         signUp,
         signOut,
         resetPassword,

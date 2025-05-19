@@ -20,7 +20,7 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { signIn } = useAuth();
+  const { signIn, signInWithOAuth } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -105,6 +105,38 @@ export default function LoginForm() {
                 "Sign In"
               )}
             </Button>
+
+            <div className="relative my-4">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">
+                  Or continue with
+                </span>
+              </div>
+            </div>
+
+            <div className="flex gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full"
+                onClick={() => signInWithOAuth("github")}
+              >
+                <Github className="mr-2 h-4 w-4" />
+                GitHub
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full"
+                onClick={() => signInWithOAuth("google")}
+              >
+                <Chrome className="mr-2 h-4 w-4" />
+                Google
+              </Button>
+            </div>
           </form>
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
