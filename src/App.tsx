@@ -19,58 +19,112 @@ import ReportsPage from "./components/reports/ReportsPage";
 import DocumentImportExport from "./components/documents/DocumentImportExport";
 import EventImportExport from "./components/calendar/EventImportExport";
 import { Toaster } from "./components/ui/toaster";
+import { ErrorBoundary } from "./components/ui/error-boundary";
 import routes from "tempo-routes";
 
 function App() {
   return (
-    <AuthProvider>
-      <Suspense
-        fallback={
-          <div className="flex justify-center items-center min-h-screen">
-            Loading...
-          </div>
-        }
-      >
-        {/* Tempo routes must be rendered before other routes */}
-        {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
+    <ErrorBoundary>
+      <AuthProvider>
+        <Suspense
+          fallback={
+            <div className="flex justify-center items-center min-h-screen">
+              Loading...
+            </div>
+          }
+        >
+          {/* Tempo routes must be rendered before other routes */}
+          {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<RegisterForm />} />
-          <Route path="/forgot-password" element={<ForgotPasswordForm />} />
-          <Route path="/reset-password" element={<ResetPasswordForm />} />
-          <Route path="/unauthorized" element={<UnauthorizedPage />} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/register" element={<RegisterForm />} />
+            <Route path="/forgot-password" element={<ForgotPasswordForm />} />
+            <Route path="/reset-password" element={<ResetPasswordForm />} />
+            <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
-          {/* Protected Dashboard Routes */}
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="contacts" element={<ContactsPage />} />
-            <Route path="calendar" element={<CalendarPage />} />
-            <Route path="documents" element={<DocumentsPage />} />
-            <Route path="payments" element={<PaymentsPage />} />
-            <Route path="reports" element={<ReportsPage />} />
-            <Route path="settings" element={<UserSettingsPage />} />
-          </Route>
+            {/* Protected Dashboard Routes */}
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <ErrorBoundary>
+                    <DashboardLayout />
+                  </ErrorBoundary>
+                </ProtectedRoute>
+              }
+            >
+              <Route
+                path="dashboard"
+                element={
+                  <ErrorBoundary>
+                    <Dashboard />
+                  </ErrorBoundary>
+                }
+              />
+              <Route
+                path="contacts"
+                element={
+                  <ErrorBoundary>
+                    <ContactsPage />
+                  </ErrorBoundary>
+                }
+              />
+              <Route
+                path="calendar"
+                element={
+                  <ErrorBoundary>
+                    <CalendarPage />
+                  </ErrorBoundary>
+                }
+              />
+              <Route
+                path="documents"
+                element={
+                  <ErrorBoundary>
+                    <DocumentsPage />
+                  </ErrorBoundary>
+                }
+              />
+              <Route
+                path="payments"
+                element={
+                  <ErrorBoundary>
+                    <PaymentsPage />
+                  </ErrorBoundary>
+                }
+              />
+              <Route
+                path="reports"
+                element={
+                  <ErrorBoundary>
+                    <ReportsPage />
+                  </ErrorBoundary>
+                }
+              />
+              <Route
+                path="settings"
+                element={
+                  <ErrorBoundary>
+                    <UserSettingsPage />
+                  </ErrorBoundary>
+                }
+              />
+            </Route>
 
-          {/* Tempo routes */}
-          {import.meta.env.VITE_TEMPO === "true" && (
-            <Route path="/tempobook/*" />
-          )}
+            {/* Tempo routes */}
+            {import.meta.env.VITE_TEMPO === "true" && (
+              <Route path="/tempobook/*" />
+            )}
 
-          {/* Catch-all route */}
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </Suspense>
-      <Toaster />
-    </AuthProvider>
+            {/* Catch-all route */}
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Suspense>
+        <Toaster />
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 
